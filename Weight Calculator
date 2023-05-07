@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/Rlayout">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtweight"
+        android:hint="Enter your weight"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="120dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        android:text="Check"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="330dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="400dp"
+        android:textSize="20dp"
+
+        />
+
+
+</RelativeLayout>
+
+
+
+
+package com.shelarabhishekdadasaheb.simple;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    private Button button;
+    private EditText editText;
+    private TextView tv;
+    private RelativeLayout rlayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        button = findViewById(R.id.btn);
+        editText = findViewById(R.id.edtweight);
+        tv = findViewById(R.id.textview);
+        rlayout = findViewById(R.id.Rlayout);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int height = Integer.parseInt(editText.getText().toString());
+                if(height<50){
+                    tv.setText("You're Underweight");
+                    rlayout.setBackgroundColor(Color.YELLOW);
+                } else if (height>51 && height<75) {
+                    tv.setText("You're Healthy");
+                    rlayout.setBackgroundColor(Color.GREEN);
+
+                } else if (height>76 && height<150) {
+                    tv.setText("You're Overweight");
+                    rlayout.setBackgroundColor(Color.RED);
+
+                }
+            }
+        });
+    }
+}
